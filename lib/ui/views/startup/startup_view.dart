@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:lock_pass_app_stacked/ui/progress_bar/ProgressIndicatorView.dart';
 import 'package:stacked/stacked.dart';
 import 'package:lock_pass_app_stacked/ui/common/ui_helpers.dart';
 
@@ -14,39 +13,44 @@ class StartupView extends StackedView<StartupViewModel> {
     BuildContext context,
     StartupViewModel viewModel,
     Widget? child,
-  ) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Password safe',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Loading ...', style: TextStyle(fontSize: 16)),
-                horizontalSpaceSmall,
-                SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: ProgressIndicatorView(),
-                )
-              ],
-            ),
-          ],
+  ) =>
+      Scaffold(
+        backgroundColor: Colors.grey.shade800,
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Password safer',
+                style: TextStyle(
+                    fontSize: 60,
+                    color: Colors.white60,
+                    fontWeight: FontWeight.w900
+                ),
+              ),
+              verticalSpaceLarge,
+              verticalSpaceLarge,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  verticalSpaceMedium,
+                  horizontalSpaceSmall,
+                  SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: Image.asset('assets/images/home_image.png'),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   @override
   StartupViewModel viewModelBuilder(
     BuildContext context,
-  ) =>
-      StartupViewModel();
+  ) => StartupViewModel();
 
   @override
   void onViewModelReady(StartupViewModel viewModel) => SchedulerBinding.instance

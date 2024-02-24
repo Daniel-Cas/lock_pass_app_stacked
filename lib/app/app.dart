@@ -1,7 +1,7 @@
 import 'package:lock_pass_app_stacked/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:lock_pass_app_stacked/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:lock_pass_app_stacked/ui/views/finger_auth/FingerprintAuthView.dart';
 import 'package:lock_pass_app_stacked/ui/views/home/home_view.dart';
-import 'package:lock_pass_app_stacked/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
@@ -9,7 +9,7 @@ import 'package:stacked_services/stacked_services.dart';
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView),
-    MaterialRoute(page: StartupView),
+    MaterialRoute(page: FingerAuthView),
     // @stacked-route
   ],
   dependencies: [
