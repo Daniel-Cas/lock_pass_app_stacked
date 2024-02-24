@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:lock_pass_app_stacked/app/app.bottomsheets.dart';
 import 'package:lock_pass_app_stacked/app/app.locator.dart';
 import 'package:lock_pass_app_stacked/ui/common/app_strings.dart';
-import 'package:lock_pass_app_stacked/ui/views/home/home_viewmodel.dart';
+import 'package:lock_pass_app_stacked/ui/views/home/HomeViewModel.dart';
 
 import '../helpers/test_helpers.dart';
 

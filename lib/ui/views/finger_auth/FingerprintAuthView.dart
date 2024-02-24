@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../common/app_colors.dart';
 import '../../common/ui_helpers.dart';
 import 'FingerAuthViewModel.dart';
 
@@ -13,7 +14,7 @@ class FingerAuthView extends StackedView<FingerAuthViewModel> {
       FingerAuthViewModel viewModel,
       Widget? child,
   ) => Scaffold(
-    backgroundColor: Colors.grey.shade800,
+    backgroundColor: kcBackgroundColor,
     body: Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -22,11 +23,10 @@ class FingerAuthView extends StackedView<FingerAuthViewModel> {
             'Password safer',
             style: TextStyle(
                 fontSize: 60,
-                color: Colors.white60,
+                color: kcSecondaryColor,
                 fontWeight: FontWeight.w900
             ),
           ),
-          verticalSpaceLarge,
           verticalSpaceLarge,
           Row(
             mainAxisSize: MainAxisSize.min,

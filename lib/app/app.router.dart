@@ -6,7 +6,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart';
-import 'package:lock_pass_app_stacked/ui/views/home/home_view.dart';
+import 'package:lock_pass_app_stacked/ui/views/home/HomeView.dart';
 import 'package:lock_pass_app_stacked/ui/views/finger_auth/FingerprintAuthView.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';

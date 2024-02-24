@@ -24,7 +24,7 @@ class NoticeSheet extends StackedView<NoticeSheetModel> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: kcBackgroundColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
           topRight: Radius.circular(10),
@@ -36,12 +36,19 @@ class NoticeSheet extends StackedView<NoticeSheetModel> {
         children: [
           Text(
             request.title!,
-            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+            style: const TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w900,
+              color: kcPrimaryColor,
+            ),
           ),
           verticalSpaceTiny,
           Text(
             request.description!,
-            style: const TextStyle(fontSize: 14, color: kcMediumGrey),
+            style: const TextStyle(
+                fontSize: 14,
+                color: kcSecondaryColor,
+            ),
             maxLines: 3,
             softWrap: true,
           ),

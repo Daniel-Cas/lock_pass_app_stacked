@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:local_auth/local_auth.dart';
@@ -16,20 +15,19 @@ class FingerAuthViewModel extends BaseViewModel {
     authenticateBiometrics();
   }
 
-  Future<bool> authenticateBiometrics() async {
+  Future<void> authenticateBiometrics() async {
     bool authenticated = false;
     try {
       authenticated = await _localAuth.authenticate(
         localizedReason: 'Let me see, if you are I',
       );
-      return authenticated;
     } catch (e) {
       print(e);
-      return authenticated;
+    }
+    if (authenticated) {
+      await _navigationService.replaceWith(Routes.homeView);
+    } else {
+      exit(0);
     }
   }
-
-  Future<void> navigateToHomeView() async =>
-    await _navigationService.navigateTo(Routes.homeView);
-
 }

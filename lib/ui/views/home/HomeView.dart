@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:lock_pass_app_stacked/ui/common/app_colors.dart';
 import 'package:lock_pass_app_stacked/ui/common/ui_helpers.dart';
 
-import 'home_viewmodel.dart';
+import 'HomeViewModel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
   const HomeView({Key? key}) : super(key: key);
@@ -15,6 +15,7 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return Scaffold(
+      backgroundColor: kcBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -31,15 +32,16 @@ class HomeView extends StackedView<HomeViewModel> {
                       style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.w900,
+                        color: kcSecondaryColor,
                       ),
                     ),
                     verticalSpaceMedium,
                     MaterialButton(
-                      color: Colors.black,
+                      color: kcPrimaryColor,
                       onPressed: viewModel.incrementCounter,
                       child: Text(
                         viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: kcBackgroundColor),
                       ),
                     ),
                   ],
@@ -48,22 +50,22 @@ class HomeView extends StackedView<HomeViewModel> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     MaterialButton(
-                      color: kcDarkGreyColor,
+                      color: kcPrimaryColor,
                       onPressed: viewModel.showDialog,
                       child: const Text(
                         'Show Dialog',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: kcBackgroundColor,
                         ),
                       ),
                     ),
                     MaterialButton(
-                      color: kcDarkGreyColor,
+                      color: kcPrimaryColor,
                       onPressed: viewModel.showBottomSheet,
                       child: const Text(
                         'Show Bottom Sheet',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: kcBackgroundColor,
                         ),
                       ),
                     ),
