@@ -17,14 +17,13 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: Routes.fingerAuth,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      navigatorObservers: [
-        StackedService.routeObserver,
-      ],
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        initialRoute: Routes.fingerAuth,
+        onGenerateRoute: StackedRouter().onGenerateRoute,
+        navigatorKey: StackedService.navigatorKey,
+        navigatorObservers: [
+          StackedService.routeObserver,
+        ],
+        debugShowCheckedModeBanner: false,
+      );
 }

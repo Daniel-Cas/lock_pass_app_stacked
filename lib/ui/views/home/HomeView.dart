@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:lock_pass_app_stacked/ui/password_card/PasswordCardView.dart';
+import 'package:pixelarticons/pixel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:lock_pass_app_stacked/ui/common/app_colors.dart';
-import 'package:lock_pass_app_stacked/ui/common/ui_helpers.dart';
 
+import '../../../app/domain/Password.dart';
+import '../../bottom_bar/BottomBarView.dart';
 import 'HomeViewModel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   Widget builder(
@@ -15,73 +18,63 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: kcBackgroundColor,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                        color: kcSecondaryColor,
-                      ),
-                    ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      color: kcPrimaryColor,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: kcBackgroundColor),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: kcPrimaryColor,
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: kcBackgroundColor,
-                        ),
-                      ),
-                    ),
-                    MaterialButton(
-                      color: kcPrimaryColor,
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: kcBackgroundColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+      appBar: AppBar(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(10),
           ),
         ),
+        elevation: 3.0,
+        centerTitle: true,
+        backgroundColor: kcPrimaryColor,
+        title: const Text(
+          'Passwords',
+          textAlign: TextAlign.center,
+          strutStyle: StrutStyle(
+            fontSize: 32,
+            height: 1.5,
+            leadingDistribution: TextLeadingDistribution.even,
+          ),
+          style: TextStyle(color: kcBackgroundColor, fontSize: 32),
+        ),
+        automaticallyImplyLeading: false,
       ),
+      backgroundColor: kcBackgroundColor,
+      body: ListView(
+        padding: const EdgeInsets.only(bottom: 88),
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: TextField(
+              controller: viewModel.searchTextController,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                prefixIcon: Icon(Pixel.search, color: kcPrimaryColor),
+                labelText: 'Buscar...',
+                labelStyle: TextStyle(color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+
+            ),
+          ),
+          ...viewModel.filteredItems.map((password) => PasswordCardView(password: password)),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            viewModel.addPassword();
+          },
+        child: const Icon(Pixel.addbox, color: kcBackgroundColor),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomBarView()
     );
   }
 
   @override
   HomeViewModel viewModelBuilder(
     BuildContext context,
-  ) =>
-      HomeViewModel();
+  ) => HomeViewModel();
 }

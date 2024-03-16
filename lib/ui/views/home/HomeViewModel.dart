@@ -1,36 +1,75 @@
-import 'package:lock_pass_app_stacked/app/app.bottomsheets.dart';
-import 'package:lock_pass_app_stacked/app/app.dialogs.dart';
-import 'package:lock_pass_app_stacked/app/app.locator.dart';
-import 'package:lock_pass_app_stacked/ui/common/app_strings.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:lock_pass_app_stacked/app/domain/Password.dart';
+import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
-  final _dialogService = locator<DialogService>();
-  final _bottomSheetService = locator<BottomSheetService>();
+  var logger = Logger(
+    printer: PrettyPrinter(),
+  );
 
   String get counterLabel => 'Counter is: $_counter';
-
+  List<Password> items = [
+    Password(
+      'Meta',
+      '123',
+      'The password about meta'
+    ),
+    Password(
+      'Instagram',
+      '345',
+      'The password about instagram'
+    ),
+    Password(
+      'Outlook',
+      '678',
+      'The password about outlook'
+    ),
+    Password(
+      'Google suite',
+      '910',
+      'The password about google suite'
+    ),
+    Password(
+      'Github',
+      '910',
+      'The password about github'
+    )
+  ];
+  final searchTextController = TextEditingController();
+  List<Password> filteredItems = [];
   int _counter = 0;
+
+  HomeViewModel() {
+    filteredItems = items;
+    searchTextController.addListener(searchListener);
+  }
 
   void incrementCounter() {
     _counter++;
     rebuildUi();
   }
 
-  void showDialog() {
-    _dialogService.showCustomDialog(
-      variant: DialogType.infoAlert,
-      title: 'Stacked Rocks!',
-      description: 'Give stacked $_counter stars on Github',
-    );
+  void addPassword() {
+    items.add(Password(
+      'New password',
+      '123',
+      'The password about new password'
+    ));
+    rebuildUi();
   }
 
-  void showBottomSheet() {
-    _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.notice,
-      title: ksHomeBottomSheetTitle,
-      description: ksHomeBottomSheetDescription,
-    );
+  void searchListener() {
+    String searchText = searchTextController.text;
+
+    if (searchText.isEmpty) {
+      filteredItems = items;
+    } else {
+      logger.i("searchText: $searchText");
+      filteredItems = items.where((password) {
+        return password.title.contains(searchText);
+      }).toList();
+    }
+    notifyListeners();
   }
 }
