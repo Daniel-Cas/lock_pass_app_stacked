@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:lock_pass_app_stacked/app/domain/Password.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../../../app/app.dialogs.dart';
+import '../../../app/app.locator.dart';
 
 class HomeViewModel extends BaseViewModel {
   var logger = Logger(
@@ -39,6 +43,8 @@ class HomeViewModel extends BaseViewModel {
   final searchTextController = TextEditingController();
   List<Password> filteredItems = [];
   int _counter = 0;
+  final _formKey = GlobalKey<FormState>();
+  final _dialogService = locator<DialogService>();
 
   HomeViewModel() {
     filteredItems = items;
@@ -71,5 +77,22 @@ class HomeViewModel extends BaseViewModel {
       }).toList();
     }
     notifyListeners();
+  }
+
+  void submitForm() async {
+      var response = await _dialogService.showCustomDialog(
+        variant: DialogType.form,
+        title: 'Form submitted',
+        mainButtonTitle: 'Ok',
+        takesInput: true,
+        description: 'Validated and submitted',
+      );
+
+      if (response != null && response.confirmed == true) {
+        Password newPassword = response.data as Password;
+
+        items.add(newPassword);
+        notifyListeners();
+      }
   }
 }

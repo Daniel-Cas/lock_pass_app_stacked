@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lock_pass_app_stacked/ui/forms/FormPasswordView.dart';
 import 'package:lock_pass_app_stacked/ui/password_card/PasswordCardView.dart';
 import 'package:pixelarticons/pixel.dart';
 import 'package:stacked/stacked.dart';
@@ -63,9 +64,7 @@ class HomeView extends StackedView<HomeViewModel> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            viewModel.addPassword();
-          },
+          onPressed: viewModel.submitForm,
         child: const Icon(Pixel.addbox, color: kcBackgroundColor),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,

@@ -13,41 +13,40 @@ class FingerAuthView extends StackedView<FingerAuthViewModel> {
       BuildContext context,
       FingerAuthViewModel viewModel,
       Widget? child,
-  ) => Scaffold(
-    backgroundColor: kcBackgroundColor,
-    body: Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text(
-            'Password safer',
-            style: TextStyle(
-                fontSize: 60,
-                color: kcSecondaryColor,
-                fontWeight: FontWeight.w900
-            ),
-          ),
-          verticalSpaceLarge,
-          Row(
+  ) =>
+      Scaffold(
+        backgroundColor: kcBackgroundColor,
+        body: Center(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              verticalSpaceMedium,
-              horizontalSpaceSmall,
-              SizedBox(
-                width: 200,
-                height: 200,
-                child: Image.asset('assets/images/home_image.png'),
-              )
+              const Text(
+                'Password safer',
+                style: TextStyle(
+                    fontSize: 60,
+                    color: kcSecondaryColor,
+                    fontWeight: FontWeight.w900),
+              ),
+              verticalSpaceLarge,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  verticalSpaceMedium,
+                  horizontalSpaceSmall,
+                  SizedBox(
+                    width: 200,
+                    height: 200,
+                    child: Image.asset('assets/images/home_image.png'),
+                  )
+                ],
+              ),
             ],
           ),
-        ],
-      ),
-    ),
-  );
+        ),
+      );
 
   @override
   FingerAuthViewModel viewModelBuilder(
-      BuildContext context,
+    BuildContext context,
   ) => FingerAuthViewModel();
 }
-
